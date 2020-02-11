@@ -15,10 +15,9 @@ class CreateDevicesTable extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('uuid');
+            $table->string('uuid')->unique();
             $table->string('name');
-            $table->string('sector');
-            $table->string('sub_sector')->nullable();
+            $table->unsignedBigInteger('sector_id');
             $table->string('description')->nullable();
             $table->string('type')->default('Desktop');
             $table->string('manufacturer')->nullable();
@@ -28,10 +27,14 @@ class CreateDevicesTable extends Migration
             $table->string('storage')->nullable();
             $table->string('os')->nullable();
             $table->string('ipv4');
+            $table->string('subnet_mask')->nullable();
+            $table->string('gateway')->nullable();
             $table->string('mac')->nullable();
             $table->string('domain_primary_user')->nullable();
             $table->timestamp('acquisition_date')->nullable();
             $table->timestamps();
+
+            $table->foreign('sector_id')->references('id')->on('sectors');
         });
     }
 

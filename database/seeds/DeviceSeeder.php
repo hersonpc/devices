@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DeviceTableSeeder extends Seeder
+class DeviceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
